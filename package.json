@@ -1,0 +1,13 @@
+{
+  "name": "quickstart-cli",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Custom project scaffolder with interactive prompts.",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": ["scaffold","template","cli"],
+  "author": "",
+  "license": "MIT"
+}
