@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node src/index.js"
   },
+  "bin": { "quickstart": "bin/quickstart" },
   "keywords": ["scaffold","template","cli"],
   "author": "",
   "license": "MIT"

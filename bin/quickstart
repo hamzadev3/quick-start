@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+import('../src/index.js').catch((e) => {
+  console.error('Quick-Start CLI failed:', e?.message || e);
+  process.exit(1);
+});
