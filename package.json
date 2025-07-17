@@ -4,10 +4,12 @@
   "private": false,
   "type": "module",
   "description": "Custom project scaffolder with interactive prompts.",
-  "scripts": {
-    "start": "node src/index.js"
-  },
+  "scripts": { "start": "node src/index.js" },
   "bin": { "quickstart": "bin/quickstart" },
+  "dependencies": {
+    "inquirer": "^9",
+    "chalk": "^5"
+  },
   "keywords": ["scaffold","template","cli"],
   "author": "",
   "license": "MIT"
