@@ -1,21 +1,38 @@
 # Quick-Start CLI
 
-A tiny CLI to scaffold projects from templates (interactive prompts + tokenized copy).
+Scaffold projects from reusable templates with interactive prompts.
 
-## Install (local dev)
+## Install (dev)
 
-```sh
+```
 npm install
-npm link     # exposes the "quickstart" command globally
+npm link
 ```
 
-## Use
+## Usage
 
 ```
-quickstart # answer prompts, choose a template, and your app folder is generated
+quickstart
 ```
 
-## Unlink
+## choose a template (e.g., "basic")
+
+## enter your app name (e.g., "my-app")
+
+## What it does
+
+- Prompts for basic metadata (app name, template).
+- Copies files from templates/<template> into <appName>.
+- Token-replaces placeholders like {{APP_NAME}}.
+- Renames \_gitignore.tmpl → .gitignore, strips .tmpl extensions.
+
+## Development
+
+```
+npm test
+```
+
+## Uninstall (unlink)
 
 ```
 npm unlink -g quickstart-cli || true
