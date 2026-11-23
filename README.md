@@ -1,39 +1,44 @@
 # Quick-Start CLI
 
-Scaffold projects from reusable templates with interactive prompts.
+![CI](https://github.com/hamzadev3/quick-start/actions/workflows/ci.yml/badge.svg)
+
+Scaffold new Node projects from reusable templates with interactive prompts.
 
 ## Install (dev)
 
-```
+```bash
 npm install
-npm link
+npm link        # makes the `quickstart` command available globally
 ```
 
 ## Usage
 
-```
+```bash
 quickstart
 ```
 
-## choose a template (e.g., "basic")
+You'll be asked for a project name, a description and a template (currently `basic`).
 
-## enter your app name (e.g., "my-app")
+## How it works
 
-## What it does
+1. `src/prompts.js` asks for the project name (validated so it can't contain spaces, slashes or `..`), a description and a template.
+2. `lib/templateEngine.js` walks `templates/<template>/` recursively. For each file it:
+   - strips `.tmpl` and turns a leading `_` into `.` (`_gitignore.tmpl` → `.gitignore`; npm strips `.gitignore` files when publishing a package, so templates can't ship one directly)
+   - replaces `{{APP_NAME}}`, `__APP_NAME__` and `__DESCRIPTION__` in text files; other files are copied byte-for-byte.
 
-- Prompts for basic metadata (app name, template).
-- Copies files from templates/<template> into <appName>.
-- Token-replaces placeholders like {{APP_NAME}}.
-- Renames \_gitignore.tmpl → .gitignore, strips .tmpl extensions.
+## Tests
 
-## Development
-
-```
+```bash
 npm test
 ```
 
-## Uninstall (unlink)
+## Known limitations
 
-```
-npm unlink -g quickstart-cli || true
+- Only one template (`basic`) so far.
+- The description is inserted as-is, so a description containing `"` would break the generated `package.json`.
+
+## Uninstall
+
+```bash
+npm unlink -g quickstart-cli
 ```
