@@ -6,7 +6,7 @@ import { askSetup } from './prompts.js';
 import { copyDirWithTokens } from '../lib/templateEngine.js';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname  = path.dirname(__filename);
+const __dirname = path.dirname(__filename);
 const TEMPLATE_ROOT = path.resolve(__dirname, '..', 'templates');
 
 async function exists(p) { try { await fs.access(p); return true; } catch { return false; } }
@@ -15,7 +15,7 @@ export default (async function run() {
   console.log(chalk.bold('Quick-Start CLI'));
 
   try {
-    const { appName, template } = await askSetup();
+    const { appName, description, template } = await askSetup();
     const srcTemplate = path.join(TEMPLATE_ROOT, template);
     const destDir = path.resolve(process.cwd(), appName);
 
@@ -29,7 +29,11 @@ export default (async function run() {
     }
 
     console.log(chalk.cyan(`→ Scaffolding '${appName}' from '${template}' ...`));
-    const tokens = { '{{APP_NAME}}': appName, '__APP_NAME__': appName };
+    const tokens = {
+      '{{APP_NAME}}': appName,
+      '__APP_NAME__': appName,
+      '__DESCRIPTION__': description,
+    };
     await copyDirWithTokens(srcTemplate, destDir, tokens);
 
     console.log(chalk.green(`✓ Done.`));
